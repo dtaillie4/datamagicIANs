@@ -90,3 +90,29 @@ ggplot(data = tract, aes(geometry=geometry, fill = incomescoreRE))+
   geom_sf(size = .01)+
   scale_fill_gradient2(low = "red", mid = "yellow1", high = "darkgreen", 
                        midpoint = 50, name = "Income Score RE")
+
+#
+#
+####DEVELOPING and TESTING THRESHOLDS
+#calc median from dataset
+MDdatamed=median(tract$income,na.rm=TRUE)
+
+#score agst dataset median
+tract$incomescoreDatsetmed50<-
+  ifelse(tract$income>=MDdatamed,
+         (rescale(tract$income, to=c(50,100), from=c(MDdatamed,250001))),
+         rescale(tract$income, to=c(0,50),from=c(0,MDdatamed)))
+incomescoreDatsetmed50<-tract$incomescoreDatsetmed50
+# tract$incomescoreMDmed vs tract$incomescoreDatsetmed
+plot(incomescoreRE)
+plot(incomescoreDatsetmed50)
+
+fitMDmedvsDatasetmed <- lm(
+  formula = incomescoreRE ~ incomescoreDatsetmed50,
+  data = tract)
+
+fitMDmedvsDatasetmed
+summary(fitMDmedvsDatasetmed)
+
+plot(incomescoreRE, incomescoreDatsetmed50, pch=16, col="darkorange")
+abline(lm(incomescoreRE ~ incomescoreDatsetmed50))
