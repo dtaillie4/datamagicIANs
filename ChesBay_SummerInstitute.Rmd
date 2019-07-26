@@ -47,7 +47,7 @@ ggplot(data = tract_cb_eduscore, aes(geometry=geometry, fill = TrctELS))+
 ```
 ## Income Scoring by Census Tract 
 ### score of 75% = median icnome of US
-```{r map_plot2, echo = FALSE}
+```{r map_plot3, echo = FALSE}
 library(ggplot2)
 ggplot(data = tract, aes(geometry=geometry, fill = incmscr))+
   geom_sf(size = .01)+
@@ -56,7 +56,7 @@ ggplot(data = tract, aes(geometry=geometry, fill = incmscr))+
 ```
 ## Income Scoring by Census Tract 
 ### score of 50% = median icnome of US
-```{r map_plot3, echo = FALSE}
+```{r map_plot2, echo = FALSE}
 library(ggplot2)
 ggplot(data = tract, aes(geometry=geometry, fill = incmsRE))+
   geom_sf(size = .01)+
@@ -91,8 +91,8 @@ CHES_SVI <- st_intersection(CB_transform, SVI_transform)
 
 ```
 
-```{r} 
-#Overall Social Vulnerability Percentile Rank
+##Overall Social Vulnerability Percentile Rank
+```{r map_plot4, echo = FALSE}
 ggplot(CHES_SVI, 
        aes(geometry = geometry,
            fill = RPL_THEMES)) + geom_sf(size=0.01) + 
@@ -101,8 +101,8 @@ ggplot(CHES_SVI,
 
 ```
 
-```{r} 
-#Theme 1 Socioeconomic status Percentile Rank
+##Theme 1 Socioeconomic status Percentile Rank
+```{r map_plot5, echo = FALSE} 
 ggplot(CHES_SVI, 
        aes(geometry = geometry,
            fill = RPL_THEME1)) + geom_sf(size=0.01) + 
@@ -110,8 +110,8 @@ ggplot(CHES_SVI,
                        breaks=c(0.1,0.3,0.5,0.7,0.90),labels=c("A","B","C","D","F"),limits=c(0,1))
 ```
 
-```{r} 
-#Theme 2 Household Composition and Disability Percentile Rank
+##Theme 2 Household Composition and Disability Percentile Rank
+```{r map_plot6, echo = FALSE}
 ggplot(CHES_SVI, 
        aes(geometry = geometry,
            fill = RPL_THEME2)) + geom_sf(size=0.01) + 
@@ -119,8 +119,8 @@ ggplot(CHES_SVI,
                        breaks=c(0.1,0.3,0.5,0.7,0.90),labels=c("A","B","C","D","F"),limits=c(0,1))
 ```
 
-```{r} 
-#Theme 3 Minority Status & Language Percentile Rank
+##Theme 3 Minority Status & Language Percentile Rank
+```{r map_plot7, echo = FALSE}
 ggplot(CHES_SVI, 
        aes(geometry = geometry,
            fill = RPL_THEME3)) + geom_sf(size=0.01) + 
@@ -128,8 +128,8 @@ ggplot(CHES_SVI,
                        breaks=c(0.1,0.3,0.5,0.7,0.90),labels=c("A","B","C","D","F"),limits=c(0,1))
 ```
 
-```{r} 
-#Theme 4 Housing and Transportation Percentile Rank
+##Theme 4 Housing and Transportation Percentile Rank
+```{r map_plot8, echo = FALSE}
 ggplot(CHES_SVI, 
        aes(geometry = geometry,
            fill = RPL_THEME4)) + geom_sf(size=0.01) + 
@@ -137,8 +137,8 @@ ggplot(CHES_SVI,
                        breaks=c(0.1,0.3,0.5,0.7,0.90),labels=c("A","B","C","D","F"),limits=c(0,1))
 ```
 
-```{r} 
-#Percentile Percentage of persons below poverty estimate
+##Percentile Percentage of persons below poverty estimate
+```{r map_plot9, echo = FALSE} 
 ggplot(CHES_SVI, 
        aes(geometry = geometry,
            fill = EPL_POV)) + geom_sf(size=0.01) + 
@@ -146,8 +146,8 @@ ggplot(CHES_SVI,
                        breaks=c(0.1,0.3,0.5,0.7,0.90),labels=c("A","B","C","D","F"),limits=c(0,1))
 ```
 
-```{r} 
-#Percentile Percentage of civilian (age 16+) unemployed estimate
+##Percentile Percentage of civilian (age 16+) unemployed estimate
+```{r map_plot10, echo = FALSE}
 ggplot(CHES_SVI, 
        aes(geometry = geometry,
            fill = EPL_UNEMP)) + geom_sf(size=0.01) + 
