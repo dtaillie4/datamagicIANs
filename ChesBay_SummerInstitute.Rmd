@@ -103,7 +103,7 @@ ggplot(CHES_SVI,
 
 ```{r} 
 #Theme 1 Socioeconomic status Percentile Rank
-ChesSVA_plot <- ggplot(CHES_SVI, 
+ggplot(CHES_SVI, 
        aes(geometry = geometry,
            fill = RPL_THEME1)) + geom_sf(size=0.01) + 
   scale_fill_gradientn(colours=c("green","light green", "yellow", "orange", "red"), name="Socioeconomic status", na.value = "transparent",
