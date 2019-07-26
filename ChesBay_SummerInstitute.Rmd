@@ -10,7 +10,7 @@ library(knitr)
 library(tools)
 library(sf)
 library(tidyr)
-
+library(scales)
 opts_chunk$set(
   message = FALSE,
   warning = FALSE,
@@ -35,8 +35,17 @@ opts_chunk$set(
 - Investigate thresholds for grading health throughout CB
 ```{r load_data, echo = FALSE, context = 'data', cache.extra = md5sum('data_loading_simple.R')}
 source('data_loading_simple.R')
-
 ```
+
+```{r, include = TRUE}
+tract$incomescoreRE <-
+  ifelse(tract$income>=53675,
+         (rescale(tract$income, to=c(50,100), from=c(53657,250001))),
+         rescale(tract$income, to=c(0,50),from=c(0,53656)))
+```
+
+
+
 ## Education Scoring by Census Tract 
 ### *lower ed level = lower score. is this actually true? student debt!!
 ```{r, echo = FALSE}
