@@ -1,0 +1,66 @@
+---
+title: "Chesapeake Bay Report Card Data Scoping"
+author: Dylan, Katie May, and Vanessa
+date: July 26, 2019
+output: ioslides_presentation
+logo: IAN%20logo_2019-01.png
+---
+```{r, include = FALSE}
+library(knitr)
+library(tools)
+library(sf)
+library(tidyr)
+
+opts_chunk$set(
+  message = FALSE,
+  warning = FALSE)
+
+```
+---
+!["The Bay"](ChesBay_SummerInstitute_files/DSC09199.jpg)
+---
+## Summer Institute Goals:
+
+- Access potential data sources for social, economic, and non-tidal natural data 
+- Asess geographic and temporal distribution of data throughout CB region
+- Create scripts to show the testing of new indicators and data sources
+- Investigate thresholds for indicators with adequite spatial/temporal resolution
+- Evaluate data against thresholds 
+- Visualize data in map or graphical format using R 
+
+## Ammended goals:
+- Download census tract data using census API wrapper
+- Visualize
+- Investigate thresholds for grading health throughout CB
+```{r load_data, echo = FALSE, context = 'data', cache.extra = md5sum('data_loading_simple.R')}
+source('data_loading_simple.R')
+
+```
+## Education Scoring by Census Tract 
+### *lower ed level = lower score. is this actually true? student debt!!
+```{r map_plot, echo = FALSE}
+library(ggplot2)
+ggplot(data = tract_cb_eduscore, aes(geometry=geometry, fill = TrctELS))+
+  geom_sf(size = .01)+
+  scale_fill_gradient2(low = "red", mid = "yellow1", high = "darkgreen", 
+                       midpoint = 50, name = "Education Score")
+```
+## Income Scoring by Census Tract 
+### score of 75% = median icnome of US
+```{r map_plot2, echo = FALSE}
+library(ggplot2)
+ggplot(data = tract, aes(geometry=geometry, fill = incmscr))+
+  geom_sf(size = .01)+
+  scale_fill_gradient2(low = "red", mid = "yellow1", high = "darkgreen", 
+                       midpoint = 50, name = "Income Score")
+```
+## Income Scoring by Census Tract 
+### score of 50% = median icnome of US
+```{r map_plot3, echo = FALSE}
+library(ggplot2)
+ggplot(data = tract, aes(geometry=geometry, fill = incmsRE))+
+  geom_sf(size = .01)+
+  scale_fill_gradient2(low = "red", mid = "yellow1", high = "darkgreen", 
+                       midpoint = 50, name = "Income Score RE")
+```
+
