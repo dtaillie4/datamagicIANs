@@ -13,7 +13,8 @@ library(tidyr)
 
 opts_chunk$set(
   message = FALSE,
-  warning = FALSE)
+  warning = FALSE,
+  cache = TRUE)
 
 ```
 ---
@@ -38,16 +39,17 @@ source('data_loading_simple.R')
 ```
 ## Education Scoring by Census Tract 
 ### *lower ed level = lower score. is this actually true? student debt!!
-```{r map_plot, echo = FALSE}
+```{r, echo = FALSE}
 library(ggplot2)
 ggplot(data = tract_cb_eduscore, aes(geometry=geometry, fill = TrctELS))+
   geom_sf(size = .01)+
   scale_fill_gradient2(low = "red", mid = "yellow1", high = "darkgreen", 
                        midpoint = 50, name = "Education Score")
 ```
+---
 ## Income Scoring by Census Tract 
 ### score of 75% = median icnome of US
-```{r map_plot2, echo = FALSE}
+```{r, echo = FALSE}
 library(ggplot2)
 ggplot(data = tract, aes(geometry=geometry, fill = incmscr))+
   geom_sf(size = .01)+
@@ -56,14 +58,13 @@ ggplot(data = tract, aes(geometry=geometry, fill = incmscr))+
 ```
 ## Income Scoring by Census Tract 
 ### score of 50% = median icnome of US
-```{r map_plot3, echo = FALSE}
+```{r, echo = FALSE}
 library(ggplot2)
 ggplot(data = tract, aes(geometry=geometry, fill = incmsRE))+
   geom_sf(size = .01)+
   scale_fill_gradient2(low = "red", mid = "yellow1", high = "darkgreen", 
                        midpoint = 50, name = "Income Score RE")
 ```
-
 
 ```{r, include = FALSE} 
 library(tidyverse)

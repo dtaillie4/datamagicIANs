@@ -62,7 +62,7 @@ tract$incomescore<-
          (rescale(tract$income, to=c(75,100), from=c(53657,250001))),
          rescale(tract$income, to=c(0,75),from=c(0,53656)))
 
-st_write(tract, 'data/ScoringOutputs/tract_cb_incomescoring.shp')
+#st_write(tract, 'data/ScoringOutputs/tract_cb_incomescoring.shp')
 
 ggplot(data = tract, aes(geometry=geometry, fill = incomescore))+
   geom_sf(size = .01)+
